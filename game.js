@@ -2,13 +2,63 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Ajustar el estilo del canvas
-canvas.style.position = 'fixed';
-canvas.style.left = '50%';
-canvas.style.top = '50%';
-canvas.style.transform = 'translate(-50%, -50%)';
-canvas.width = 800;
-canvas.height = 600;
+// Panel de información (ancho fijo)
+const PANEL_WIDTH = 240; // 200px + 20px padding a cada lado
+const PANEL_MARGIN = 20;
+
+// Función para ajustar el tamaño del canvas
+function ajustarTamañoCanvas() {
+    // Calcular el espacio disponible
+    const espacioDisponible = window.innerWidth - PANEL_WIDTH - (PANEL_MARGIN * 2);
+    const alturaDisponible = window.innerHeight - (PANEL_MARGIN * 2);
+
+    // Ajustar el canvas manteniendo proporción 4:3
+    const proporcion = 4/3;
+    let nuevoAncho = espacioDisponible;
+    let nuevoAlto = espacioDisponible / proporcion;
+
+    // Si la altura es mayor que la disponible, ajustar basado en altura
+    if (nuevoAlto > alturaDisponible) {
+        nuevoAlto = alturaDisponible;
+        nuevoAncho = alturaDisponible * proporcion;
+    }
+
+    // Aplicar los nuevos tamaños
+    canvas.style.width = `${nuevoAncho}px`;
+    canvas.style.height = `${nuevoAlto}px`;
+    canvas.width = 800; // Mantener resolución interna
+    canvas.height = 600;
+
+    // Posicionar el canvas
+    canvas.style.position = 'fixed';
+    canvas.style.left = `${PANEL_WIDTH + PANEL_MARGIN}px`;
+    canvas.style.top = '50%';
+    canvas.style.transform = 'translateY(-50%)';
+}
+
+// Ajustar el panel de información
+const infoPanel = document.createElement('div');
+infoPanel.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: ${PANEL_MARGIN}px;
+    transform: translateY(-50%);
+    width: ${PANEL_WIDTH - (PANEL_MARGIN * 2)}px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+`;
+document.body.appendChild(infoPanel);
+
+// Evento de redimensionamiento
+window.addEventListener('resize', ajustarTamañoCanvas);
+
+// Llamar a la función de ajuste inicial
+ajustarTamañoCanvas();
 
 // Cargar imágenes
 const imagenPolicia = new Image();
@@ -20,23 +70,6 @@ imagenZombi.src = 'img/zombi_realista.png';
 let nivel = 1;
 let zombisMuertos = 0;
 let juegoEnPausa = false;
-
-// Crear panel de información
-const infoPanel = document.createElement('div');
-infoPanel.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 200px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-family: Arial, sans-serif;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-`;
-document.body.appendChild(infoPanel);
 
 // Función para actualizar la información
 function actualizarInfoPanel() {
@@ -361,3 +394,8 @@ function actualizar() {
 
 // Iniciar el juego
 actualizar();
+
+// Añadir estilos al body para evitar scroll
+document.body.style.margin = '0';
+document.body.style.overflow = 'hidden';
+document.body.style.backgroundColor = '#1a1a1a'; // Fondo oscuro para el espacio no utilizado
