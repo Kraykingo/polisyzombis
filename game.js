@@ -61,7 +61,7 @@ function actualizarInfoPanel() {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            background: ${juegoEnPausa ? '#f44336' : '#4CAF50'};
+            background: ${juegoEnPausa ? '#f44336' : '#2196F3'};
             color: white;
             border: none;
             border-radius: 5px;
@@ -77,7 +77,7 @@ function actualizarInfoPanel() {
             border-radius: 5px;
             margin-bottom: 15px;
         ">
-            <h3 style="margin: 0 0 10px 0; color: #4CAF50; text-align: center;">
+            <h3 style="margin: 0 0 10px 0; color: #2196F3; text-align: center;">
                 ESTADÍSTICAS
             </h3>
             <p style="margin: 5px 0; font-size: 16px;">🏆 Nivel: ${nivel}</p>
@@ -104,7 +104,7 @@ function actualizarInfoPanel() {
             border-radius: 5px;
             font-size: 14px;
         ">
-            <h4 style="margin: 0 0 10px 0; color: #4CAF50; text-align: center;">
+            <h4 style="margin: 0 0 10px 0; color: #2196F3; text-align: center;">
                 CONTROLES
             </h4>
             <p style="margin: 5px 0;">↑↓←→ Mover</p>
