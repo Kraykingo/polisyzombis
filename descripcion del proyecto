@@ -1,0 +1,18 @@
+Quiero hacer un juego en 2D que se juega en el navegador
+Eres un policia que persigue zombis
+el mapa es un cuadrado que ocupa toda la pantalla
+el jugador se mueve con las teclas de direccion
+el jugador tiene una solo una vida y muere cuando le toca un zombi.
+cuando muere el jugador se debe reiniciar la partida desde el inicio.
+el jugador tiene un arma que dispara balas que matan a los zombis
+dispara pulsando la tecla "a", tienes infinitas balas.
+el mapa es fijo y no se puede salir de el.
+el jugador se mueve con las teclas de direccion.
+el jugador puede moverse en 4 direcciones como las teclas de direccion.
+el jugador puede disparar solo hacia izquierda y derecha.
+la direccion del disparo es la misma que la direccion del jugador (ultimo movimiento).
+el jugador puede moverse y disparar al mismo tiempo.
+puedes mantener presionado el boton de disparo para disparar mas rapido.
+los personajes y zombis son pixelados.
+cada zombi se muere con 3 disparos, y el jugador recibe 1 moneda por cada zombi que mata.
+si el jugador traspasa el limite de la pantalla sale por el otro lado.

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Sprite Zombi Realista</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            margin: 10px;
+        }
+        #preview {
+            image-rendering: pixelated;
+            width: 128px;
+            height: 128px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32"></canvas>
+    <canvas id="preview" width="32" height="32"></canvas>
+    <br>
+    <button onclick="descargarImagen()">Descargar Imagen</button>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const preview = document.getElementById('preview');
+        const ctx = canvas.getContext('2d');
+        const ctxPreview = preview.getContext('2d');
+
+        // Limpiar canvas
+        ctx.fillStyle = 'transparent';
+        ctx.fillRect(0, 0, 32, 32);
+
+        // Cuerpo base
+        ctx.fillStyle = '#4a6d4a';  // Verde grisáceo oscuro
+        ctx.fillRect(8, 8, 16, 20); // Torso
+
+        // Sombras del cuerpo
+        ctx.fillStyle = '#3a5d3a';  // Verde más oscuro para sombras
+        ctx.fillRect(8, 18, 16, 10); // Sombra inferior
+        
+        // Cabeza
+        ctx.fillStyle = '#5d8a5d';  // Verde pálido para la piel
+        ctx.fillRect(8, 4, 16, 8);  // Cabeza base
+        
+        // Detalles de la cara
+        ctx.fillStyle = '#2d422d';  // Verde muy oscuro
+        ctx.fillRect(10, 6, 4, 3);  // Ojo izquierdo hundido
+        ctx.fillRect(18, 6, 4, 3);  // Ojo derecho hundido
+        
+        // Ojos brillantes
+        ctx.fillStyle = '#ff3333';  // Rojo brillante
+        ctx.fillRect(11, 7, 2, 2);  // Ojo izquierdo
+        ctx.fillRect(19, 7, 2, 2);  // Ojo derecho
+        
+        // Boca ensangrentada
+        ctx.fillStyle = '#8b0000';  // Rojo oscuro
+        ctx.fillRect(12, 10, 8, 2); // Boca
+        
+        // Brazos con heridas
+        ctx.fillStyle = '#4a6d4a';  // Verde base
+        ctx.fillRect(6, 12, 2, 12);  // Brazo izquierdo
+        ctx.fillRect(24, 12, 2, 12); // Brazo derecho
+        
+        // Heridas y sangre
+        ctx.fillStyle = '#8b0000';  // Rojo oscuro
+        ctx.fillRect(8, 14, 3, 2);   // Herida en el torso
+        ctx.fillRect(18, 20, 4, 2);  // Otra herida
+        
+        // Ropa rasgada
+        ctx.fillStyle = '#2d422d';  // Verde muy oscuro
+        ctx.fillRect(8, 22, 16, 2);  // Cinturón roto
+        ctx.fillRect(10, 16, 4, 2);  // Rasgadura en la ropa
+        ctx.fillRect(18, 12, 3, 2);  // Otra rasgadura
+
+        // Detalles de descomposición
+        ctx.fillStyle = '#1a291a';  // Verde casi negro
+        ctx.fillRect(9, 5, 2, 2);   // Manchas de descomposición
+        ctx.fillRect(21, 8, 2, 2);
+        ctx.fillRect(15, 15, 2, 2);
+
+        // Mostrar preview
+        ctxPreview.imageSmoothingEnabled = false;
+        ctxPreview.drawImage(canvas, 0, 0, 32, 32);
+
+        // Función para descargar la imagen
+        function descargarImagen() {
+            const link = document.createElement('a');
+            link.download = 'zombi_realista.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html> 
